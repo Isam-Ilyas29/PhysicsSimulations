@@ -5,8 +5,12 @@ Engine::Engine() {
     ;
 }
 
-void Engine::initialiseWindow(std::string title, sf::VideoMode size, unsigned int flags) {
+void Engine::initialiseWindow(std::string title, sf::VideoMode size, unsigned int flags, unsigned int frames_per_second) {
     window.create(size, title, flags);
+    
+    this->frames_per_second = frames_per_second;
+    window.setFramerateLimit(60);
+    
     window.setKeyRepeatEnabled(false);
 }
 
@@ -30,7 +34,17 @@ void Engine::updateInput() {
 }
 
 void Engine::render() {
-    window.clear(sf::Color(0, 0, 255, 255));
+    ;
+}
 
-    window.display();
+sf::RenderWindow &Engine::getWindow() {
+    return window;
+}
+
+unsigned int Engine::getFramesPerSecond() {
+    return frames_per_second;
+}
+
+void Engine::destroy() {
+    window.close();
 }
